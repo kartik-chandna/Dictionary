@@ -8,56 +8,10 @@ class TrieNode:
         self.freq = 0
         self.meaning = ''
 
-##class Node:
-##    def __init__(self, key, freq):
-##        self.key = key
-##        self.val = freq
-##        self.next = None
-##        self.prev = None
-##
-##class LRUCache:
-##    def __init__(self, capacity):
-##        self.head = Node(0)
-##        self.tail = Node(0)
-##        self.head.next = self.tail
-##        self.tail.prev = self.head
-##        self.words = {}
-##        self.count = 0
-##        self.capacity = capacity
-##
-##    def display(self):
-##        temp = self.head.next
-##        while temp != self.tail:
-##            print(temp.key + " ---> " + temp.val)
-##            temp = temp.next
-##
-##    def add_node(self, node):
-##        node.prev = self.head
-##        node.next = self.head.next
-##        self.head.next.prev = node
-##        self.head.next = node
-##
-##    def remove_node(self, node):
-##        pre = node.prev
-##        post = node.next
-##        pre.next = post
-##        post.prev = pre
-##
-##    def move_to_head(self, node):
-##        self.remove_node(node)
-##        self.add_node(node)
-##
-##    def pop_tail(self):
-##        node = self.tail.prev
-##        self.remove_node(node)
-##        return node
-##
-##    def put
-##        
+
 class Trie:
     def __init__(self):
         self.root = TrieNode()
-        #self.words = []
         self.h = []
         
     def ch2idx(self, c):
@@ -70,8 +24,7 @@ class Trie:
                 temp.child[self.ch2idx(word[i])] = TrieNode()
             temp = temp.child[self.ch2idx(word[i])]
         temp.is_end = True
-        temp.meaning = meaning
-        #self.words.append(word)
+        temp.meaning = meaning)
         
     def search_word_util(self, word):
         temp = self.root
@@ -85,7 +38,7 @@ class Trie:
             temp.freq += 1
             if len(self.h) < 5:
                 heapq.heappush(self.h, (temp.freq, word))
-            elif temp.q > self.h[0][0]:
+            elif temp.freq > self.h[0][0]:
                 heapq.heappop(self.h)
                 heapq.heappush(self.h, (temp.freq, word))
             return True, temp.meaning, temp.freq
